@@ -16,6 +16,10 @@
 		"src/routes/+layout.js",
 		"src/routes/+layout.server.js"
 	],
+	"/products": [
+		"src/routes/+layout.js",
+		"src/routes/+layout.server.js"
+	],
 	"/register": [
 		"src/routes/register/+page.server.js",
 		"src/routes/+layout.js",

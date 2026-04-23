@@ -1,6 +1,7 @@
 <script>
 	import favicon from '$lib/assets/favicon.svg';
-
+	import Nav from "$lib/components/Nav.svelte";
+	import Footer from "$lib/components/Footer.svelte";
 	let { children, data } = $props();
 </script>
 
@@ -11,24 +12,62 @@
 
 
 <header>
-	{#if data.isLoggedIn}
-		You are logged in as: <strong>{data.user.name}</strong>
-		<br>
-		<form method="post" action="/logout">
-			<button type="submit">Logout</button>
-		</form>
+    <div class="top">
+        <h2>CS6 - Tool and Machine Hire Company -</h2>
 
-	{:else}
-		You are not logged in - please <a href="/login">login</a>
-	{/if}
+        <div class="status">
+            {#if data.isLoggedIn}
+                <span>You are logged in as: <strong>{data.user.name}</strong></span>
+                <form method="post" action="/logout">
+                    <button type="submit">Logout</button>
+                </form>
+            {:else}
+                <p>You are not logged in - please <a href="/login">login</a></p>
+            {/if}
+        </div>
+    </div>
+
+    <div class="nav-row">
+        <Nav isLoggedIn={data.isLoggedIn} />
+
+    </div>
 </header>
-<hr>
 
-{@render children()}
+
+<main>
+	{@render children()}
+</main>
+
+<Footer />
 
 
 <style>
-	#profile_image {
-		width: 50px;
-	}
+header {
+    background: #f4faff;
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 10;
+    position: relative;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    white-space: nowrap;
+}
+
+.nav-row {
+    display: flex;
+    justify-content: center;
+}
+
 </style>
