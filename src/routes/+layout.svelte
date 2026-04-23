@@ -2,6 +2,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import Nav from "$lib/components/Nav.svelte";
 	import Footer from "$lib/components/Footer.svelte";
+	
 	let { children, data } = $props();
 </script>
 
@@ -42,6 +43,9 @@
 
 
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&display=swap');
+
 header {
     background: #f4faff;
     padding: 0.8rem 1.5rem;
@@ -50,6 +54,7 @@ header {
     gap: 0.5rem;
     z-index: 10;
     position: relative;
+	font-size: 1.15rem; 
 }
 
 .top {
@@ -69,5 +74,12 @@ header {
     display: flex;
     justify-content: center;
 }
+
+h2 {
+ font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 </style>

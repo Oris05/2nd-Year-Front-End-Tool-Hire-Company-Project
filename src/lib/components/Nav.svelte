@@ -4,7 +4,7 @@
         justify-content: center;
         padding: 0.8rem 0;
         font-family: "Rubik Dirt", system-ui;
-        font-size: 0.8rem;
+        font-size: 1.15rem; 
         position: relative;
         z-index: 10;
     }

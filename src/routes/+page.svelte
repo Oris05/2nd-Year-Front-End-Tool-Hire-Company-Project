@@ -17,12 +17,12 @@
 
     <!-- Block 2 — Image placeholder -->
     <div class="box image placeholder">
-        <p>Image 1</p>
+        <img src="/images/1.jpg" alt="Company history image" />
     </div>
 
     <!-- Block 3 — Image placeholder -->
     <div class="box image placeholder">
-        <p>Image 2</p>
+        <img src="/images/2.jpg" alt="Company history image" />
     </div>
 
     <!-- Block 4 — Text -->
@@ -46,7 +46,7 @@
 
     <!-- Block 6 — Image placeholder -->
     <div class="box image placeholder">
-        <p>Image 3</p>
+       <img src="/images/3.jpg" alt="Company history image" />
     </div>
 
 </section>
@@ -54,7 +54,7 @@
 <style>
 .history-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* always 2 boxes */
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     padding: 2rem 1rem;
     max-width: 1200px;
@@ -63,42 +63,63 @@
 
 @media (max-width: 700px) {
     .history-grid {
-        grid-template-columns: 1fr; /* mobile: 1 per row */
+        grid-template-columns: 1fr;
     }
 }
 
+/* FORCE ALL BOXES TO EXACT SAME SIZE */
 .box {
-    padding: 2rem;
+    height: 420px;                 /* <<< FIXED HEIGHT FOR ALL BOXES */
     border-radius: 10px;
     background: #f4faff;
     border: 1px solid #ddd;
-    min-height: 260px; /* makes them visually larger */
+    overflow: hidden;              /* prevents text from expanding box */
+    display: flex;
+    flex-direction: column;
 }
 
-.text h2 {
+/* TEXT BOXES */
+.box.text {
+    padding-left: 1.5rem;
+	padding-right: 1.5rem;
+    justify-content: flex-start;
+}
+
+.box.text h2 {
     font-family: "Rubik Dirt", system-ui;
     margin-bottom: 0.5rem;
     color: #111;
 }
 
-.text p {
+.box.text p {
     color: #333;
     line-height: 1.6;
+    overflow-y: auto;  
+	font-size: 1.15rem;             /* scroll if text is too long */
 }
 
-.image.placeholder {
+/* IMAGE BOXES */
+.box.image {
+    padding: 0;
+    background: #e8eef5;
+    border: 1px solid #bbb;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #e8eef5;
-    border: 2px dashed #bbb;
-    height: 260px;
 }
 
-.image.placeholder p {
-    font-family: "Rubik Dirt", system-ui;
-    color: #666;
-    margin: 0;
+.box.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;             /* keeps image inside box */
+    display: block;
+    border-radius: 10px;
+}
+
+h2{
+	font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 </style>
