@@ -29,7 +29,8 @@
     </div>
 
     <div class="nav-row">
-        <Nav isLoggedIn={data.isLoggedIn} />
+        <Nav isLoggedIn={data.isLoggedIn} user={data.user} />
+
 
     </div>
 </header>

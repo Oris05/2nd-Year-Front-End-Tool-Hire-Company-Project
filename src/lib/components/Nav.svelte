@@ -33,13 +33,16 @@
     
 </style>
 <script>
-    const { isLoggedIn = false } = $props();
+    const { isLoggedIn, user } = $props();
 </script>
 
 <nav>
     <ul>
         <li><a href="/">HOME</a></li>
         <li><a href="/products">PRODUCTS</a></li>
+         {#if isLoggedIn && user?.name === 'admin'}
+        <a href="/stats">STATS PANEL</a>
+        {/if}
 
         {#if !isLoggedIn}
             <li><a href="/register">REGISTER</a></li>

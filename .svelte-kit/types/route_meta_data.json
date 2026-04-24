@@ -35,5 +35,9 @@
 		"src/routes/resetdatabase/+page.server.js",
 		"src/routes/+layout.js",
 		"src/routes/+layout.server.js"
+	],
+	"/stats": [
+		"src/routes/+layout.js",
+		"src/routes/+layout.server.js"
 	]
 }

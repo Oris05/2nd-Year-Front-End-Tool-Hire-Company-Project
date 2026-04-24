@@ -43,7 +43,7 @@ declare module "$app/types" {
 			"/resetdatabase": Record<string, never>;
 			"/stats": Record<string, never>
 		};
-		Pathname(): "/" | "/login" | "/logout" | "/products" | `/products/${string}` & {} | "/register" | "/resetdatabase";
+		Pathname(): "/" | "/login" | "/logout" | "/products" | `/products/${string}` & {} | "/register" | "/resetdatabase" | "/stats";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
 		Asset(): "/images/1.jpg" | "/images/2.jpg" | "/images/3.jpg" | "/images/b1.jpg" | "/images/cut.jpg" | "/images/ex2.jpg" | "/images/grind.jpg" | "/images/h1.jpg" | "/images/l1.jpg" | "/images/l2.jpg" | "/images/mix-s.jpg" | "/images/mix-xl.jpg" | "/images/mix_l.jpg" | "/images/saw.jpg" | "/images/skibka-excavator-4754266.jpg" | "/images/x1.jpg" | "/images/x2.jpg" | "/robots.txt" | string & {};
 	}
