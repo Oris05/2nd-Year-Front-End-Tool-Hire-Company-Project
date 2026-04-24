@@ -1,38 +1,13 @@
 <script>
     const { data } = $props();
     const product = $derived(data.product);
+    const user = data.user;
 
-    // Simulated login state — replace with your real auth
-    const user = data.user; // null if not logged in
-
-    let reservation = {
-        date: "",
-        days: 1,
-        time: "",
-        name: "",
-        address: ""
-    };
-
-    function submitReservation() {
-        if (!user) {
-            alert("Please log in to hire this item.");
-            return;
-        }
-
-        const confirmed = confirm(
-            `Confirm reservation for ${product.title}?\n\n` +
-            `Date: ${reservation.date}\n` +
-            `Days: ${reservation.days}\n` +
-            `Time: ${reservation.time}\n` +
-            `Name: ${reservation.name}\n` +
-            `Address: ${reservation.address}`
-        );
-
-        if (confirmed) {
-            // Redirect to confirmation page
-            window.location.href = `/confirmation?item=${product.id}`;
-        }
-    }
+    let date = $state("");
+    let days = $state(1);
+    let time = $state("");
+    let name = $state("");
+    let address = $state("");
 </script>
 
 <div class="product-page">
@@ -55,40 +30,42 @@
         </ul>
     </section>
 
-    <!-- RESERVATION FORM -->
     <section class="reservation-box">
         <h2>Reserve This Item</h2>
 
         {#if !user}
             <p class="login-warning">You must be logged in to reserve this item.</p>
         {:else}
-            <form on:submit|preventDefault={submitReservation}>
+            <!-- FORM ACTION DOES THE NAVIGATION -->
+            <form action="/confirmation" method="GET">
                 <label>
                     Pick-up Date
-                    <input type="date" bind:value={reservation.date} required />
+                    <input type="date" name="date" bind:value={date} required />
                 </label>
 
                 <label>
                     Number of Days
-                    <input type="number" min="1" bind:value={reservation.days} required />
+                    <input type="number" name="days" min="1" bind:value={days} required />
                 </label>
 
                 <label>
                     Pick-up Time
-                    <input type="time" bind:value={reservation.time} required />
+                    <input type="time" name="time" bind:value={time} required />
                 </label>
 
                 <label>
                     Full Name
-                    <input type="text" bind:value={reservation.name} required />
+                    <input type="text" name="name" bind:value={name} required />
                 </label>
 
                 <label>
                     Address
-                    <textarea bind:value={reservation.address} required></textarea>
+                    <textarea name="address" bind:value={address} required></textarea>
                 </label>
 
-                <button type="submit" class="reserve-btn">Reserve Now</button>
+                <button type="submit" class="reserve-btn">
+                    Reserve Now
+                </button>
             </form>
         {/if}
     </section>
@@ -156,7 +133,7 @@ img {
     font-size: 1.1rem;
 }
 
-/* RESERVATION FORM STYLING */
+/* RESERVATION FORM */
 .reservation-box {
     background: #ffffff;
     padding: 1.8rem;
