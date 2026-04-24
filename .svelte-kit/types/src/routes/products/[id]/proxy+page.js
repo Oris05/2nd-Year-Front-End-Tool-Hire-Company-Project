@@ -1,16 +1,15 @@
 // @ts-nocheck
 /** @param {Parameters<import('./$types').PageLoad>[0]} event */
-export async function load({ params }) {
-    const { items } = await import('../items.js');
+export async function load({ params, fetch }) {
+    const res = await fetch(`http://localhost:3000/products/${params.id}`);
 
-    const product = items.find((p) => p.id === params.id);
-
-    if (!product) {
+    if (!res.ok) {
         return {
             status: 404,
             error: new Error("Product not found")
         };
     }
 
+    const product = await res.json();
     return { product };
 }

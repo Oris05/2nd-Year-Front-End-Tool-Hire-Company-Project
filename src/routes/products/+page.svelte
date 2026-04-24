@@ -1,17 +1,16 @@
 <script>
     import Card from "$lib/components/Card.svelte";
-    import { items } from "./items.js";
+
+    // Runes mode: receive data from +page.js
+    const { data } = $props();
+    const products = $derived(data.products);
 </script>
 
-
 <h2>SELECT YOUR TOOL or MACHINE!</h2>
+
 <div class="card-grid">
-    {#each items as item}
-      <a href={`/products/${item.id}`} class="card-link">
-
-
-
-
+    {#each products as item}
+        <a href={`/products/${item.id}`} class="card-link">
             <Card {...item} />
         </a>
     {/each}
@@ -22,6 +21,7 @@
     text-decoration: none;
     color: inherit;
 }
+
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -32,11 +32,11 @@
 }
 
 h2 {
- font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 5rem;
-  text-align: center;
-  margin: 0;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 5rem;
+    text-align: center;
+    margin: 0;
 }
 </style>

@@ -30,6 +30,7 @@
 p {
     text-align: center;
 }
+
 .product-page {
     max-width: 900px;
     margin: 0 auto;
