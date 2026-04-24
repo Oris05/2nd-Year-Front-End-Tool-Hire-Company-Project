@@ -29,12 +29,13 @@ declare module "$app/types" {
 	type MatcherParam<M> = M extends (param : string) => param is (infer U extends string) ? U : string;
 
 	export interface AppTypes {
-		RouteId(): "/" | "/login" | "/logout" | "/products" | "/products/[id]" | "/register" | "/resetdatabase" | "/stats";
+		RouteId(): "/" | "/confirmation" | "/login" | "/logout" | "/products" | "/products/[id]" | "/register" | "/resetdatabase" | "/stats";
 		RouteParams(): {
 			"/products/[id]": { id: string }
 		};
 		LayoutParams(): {
 			"/": { id?: string };
+			"/confirmation": Record<string, never>;
 			"/login": Record<string, never>;
 			"/logout": Record<string, never>;
 			"/products": { id?: string };
@@ -43,7 +44,7 @@ declare module "$app/types" {
 			"/resetdatabase": Record<string, never>;
 			"/stats": Record<string, never>
 		};
-		Pathname(): "/" | "/login" | "/logout" | "/products" | `/products/${string}` & {} | "/register" | "/resetdatabase" | "/stats";
+		Pathname(): "/" | "/confirmation" | "/login" | "/logout" | "/products" | `/products/${string}` & {} | "/register" | "/resetdatabase" | "/stats";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
 		Asset(): "/images/1.jpg" | "/images/2.jpg" | "/images/3.jpg" | "/images/b1.jpg" | "/images/cut.jpg" | "/images/ex2.jpg" | "/images/grind.jpg" | "/images/h1.jpg" | "/images/l1.jpg" | "/images/l2.jpg" | "/images/mix-s.jpg" | "/images/mix-xl.jpg" | "/images/mix_l.jpg" | "/images/saw.jpg" | "/images/skibka-excavator-4754266.jpg" | "/images/x1.jpg" | "/images/x2.jpg" | "/robots.txt" | string & {};
 	}
